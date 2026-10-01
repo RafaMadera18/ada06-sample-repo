@@ -8,6 +8,16 @@ def calculate_subtotal(prices: list[float]) -> float:
     return round(total, 2)
 
 
+def apply_discount(subtotal: float, discount_percent: float) -> float:
+    """Apply percentage discount (0-100) to subtotal."""
+    if subtotal < 0:
+        raise ValueError("Subtotal cannot be negative")
+    if discount_percent < 0 or discount_percent > 100:
+        raise ValueError("Discount percent must be between 0 and 100")
+    discounted = subtotal * (1.0 - (discount_percent / 100.0))
+    return round(discounted, 2)
+
+
 def apply_tax(amount: float, tax_rate: float) -> float:
     """Apply tax rate to an amount."""
     if amount < 0:
